@@ -20,6 +20,8 @@ fn main() {
             .read_line(&mut input)
             .expect("Failed to read input");
         let input = input.trim();
+        let parts: Vec<&str> = input.split_whitespace().collect();
         println!("The input is {input}");
+        println!("These are the parts: {:?}",parts)
     }
 }
