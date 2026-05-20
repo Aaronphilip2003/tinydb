@@ -1,17 +1,7 @@
-// use std::collections::HashMap;
-
-// fn main() {
-//     let mut db = HashMap::new();
-//     db.insert(String::from("name"), String::from("Aaron"));
-//     db.insert(String::from("city"),String::from("Pune"));
-//     db.insert(String::from("language"),String::from("Rust"));
-//     println!("{:?}", db);
-// }
-
-// use std::collections::HashMap;
+use std::collections::HashMap;
 use std::io;
 fn main() {
-    // let mut db = HashMap::new();
+    let mut db = HashMap::new();
     loop {
         let mut input = String::new();
         println!("Enter a command");
@@ -21,7 +11,21 @@ fn main() {
             .expect("Failed to read input");
         let input = input.trim();
         let parts: Vec<&str> = input.split_whitespace().collect();
-        println!("The input is {input}");
-        println!("These are the parts: {:?}",parts)
+        if  parts[0] == "SET" && parts.len() != 3 {
+            println!("Please enter exactly 3 words");
+            continue;
+        }
+        match parts[0] {
+            "SET" => {
+                db.insert(parts[1].to_string(), parts[2].to_string());
+                println!("{:?}", db);
+            }
+            "GET" => {
+                println!("{:?}",db.get(parts[1]));
+            }
+            _ => {
+                println!("UNKNOWN COMMAND");
+            }
+        }
     }
 }
