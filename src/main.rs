@@ -11,17 +11,20 @@ fn main() {
             .expect("Failed to read input");
         let input = input.trim();
         let parts: Vec<&str> = input.split_whitespace().collect();
-        if  parts[0] == "SET" && parts.len() != 3 {
-            println!("Please enter exactly 3 words");
-            continue;
-        }
         match parts[0] {
             "SET" => {
+                if parts[0] == "SET" && parts.len() != 3 {
+                    println!("Invalid syntax, SET expects 2 argument(s)");
+                    continue;
+                }
                 db.insert(parts[1].to_string(), parts[2].to_string());
                 println!("{:?}", db);
             }
             "GET" => {
-                println!("{:?}",db.get(parts[1]));
+                if parts[0] == "GET" && parts.len()!=2 {
+                    println!("Invalid syntax, GET expects 1 argument(s)");
+                }
+                println!("{:?}", db.get(parts[1]));
             }
             _ => {
                 println!("UNKNOWN COMMAND");
