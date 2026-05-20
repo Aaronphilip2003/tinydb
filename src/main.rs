@@ -11,6 +11,9 @@ fn main() {
             .expect("Failed to read input");
         let input = input.trim();
         let parts: Vec<&str> = input.split_whitespace().collect();
+        if parts.is_empty() {
+            continue;
+        }
         match parts[0] {
             "SET" => {
                 if parts[0] == "SET" && parts.len() != 3 {
@@ -21,7 +24,7 @@ fn main() {
                 println!("{:?}", db);
             }
             "GET" => {
-                if parts[0] == "GET" && parts.len()!=2 {
+                if parts[0] == "GET" && parts.len() != 2 {
                     println!("Invalid syntax, GET expects 1 argument(s)");
                 }
                 println!("{:?}", db.get(parts[1]));
