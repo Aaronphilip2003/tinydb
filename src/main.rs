@@ -37,6 +37,20 @@ fn main() {
                     }
                 }
             }
+            "DELETE" => {
+                if parts[0] == "DELETE" && parts.len() != 2 {
+                    println!("Invalid syntax, DELETE expects 2 argument(s)");
+                }
+                match db.remove(parts[1]) {
+                    Some(_) => {
+                        db.remove(parts[1]);
+                    }
+
+                    None => {
+                        println!("Invalid Syntax");
+                    }
+                }
+            }
             _ => {
                 println!("UNKNOWN COMMAND");
             }
