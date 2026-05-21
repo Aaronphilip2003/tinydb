@@ -27,7 +27,15 @@ fn main() {
                 if parts[0] == "GET" && parts.len() != 2 {
                     println!("Invalid syntax, GET expects 1 argument(s)");
                 }
-                println!("{:?}", db.get(parts[1]));
+                match db.get(parts[1]) {
+                    Some(value) => {
+                        println!("{}", value);
+                    }
+
+                    None => {
+                        println!("Key Not Found");
+                    }
+                }
             }
             _ => {
                 println!("UNKNOWN COMMAND");
