@@ -43,7 +43,7 @@ fn main() {
                 }
                 match db.remove(parts[1]) {
                     Some(_) => {
-                        db.remove(parts[1]);
+                        println!("Key Deleted");
                     }
 
                     None => {
